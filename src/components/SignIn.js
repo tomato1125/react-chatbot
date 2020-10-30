@@ -78,6 +78,14 @@ export default function SignIn({ setName }) {
             //TextField内に文字が入力されたら発火するイベントを記述
             //イベントが引数として渡って（e)、そのイベントに対してe.target.value(このフィールドの中の文字列)を取得することができる。
             onChange={(e) => setString(e.target.value)}
+            //キーボードの入力を検知する処理
+            onKeyDown={(e) => {
+              //oreventDefaultで画面全体がリロードしなくなる。
+              if( e.key === 'Enter') {
+                setName(e.target.value);
+                e.preventDefault();
+              }
+            }}
           />
           <Button
             type="button"
