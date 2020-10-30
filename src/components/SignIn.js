@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//setName（親コンポーネントからもらっているname状態を書き換える関数）を使って、名前を保存する
 export default function SignIn({ setName }) {
   const classes = useStyles();
   //初期状態で「はじめる」のボタンが押せないようにする。disabledな状態に対してtrueを設定。disabledを変えるための関数をsetDisabledと設定する。
@@ -79,13 +80,18 @@ export default function SignIn({ setName }) {
             onChange={(e) => setString(e.target.value)}
           />
           <Button
-            type="submit"
+            type="button"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
             //disabledという状態をボタンコンポーネントに付与する。
             disabled={disabled}
+            //onClickで関数がクリックされるたびに実行される。
+            onClick={() => {
+              //setNameに現時点の文字列「string」を渡す。
+              setName(string);
+            }}
           >
             はじめる
           </Button>
