@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 
 import Main from './Main';
 import SignIn from './SignIn';
+import config from '../config.json';
 
 
 export default () => {
   //useStateを使う。初期値を空文字「('')」とする。状態の名前を「name」とする。
   const [name, setName] = useState('');
-  console.log({name});
-  //nameが空だった場合はSignInを返す
-  if (name === '') {
+  //nameが空だった場合はSignInを返す+config.signInEnabledがtrueだったら・・・
+  if (config.signInEnabled && name === '') {
     return <SignIn setName={setName} />;
   } else {
     //nameが空じゃない場合はMainコンポーネントのnameを返す。
