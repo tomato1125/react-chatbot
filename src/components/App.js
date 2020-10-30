@@ -8,5 +8,6 @@ export default () => {
   const [name, setName] = useState('');
   console.log({name});
   //変えたい場所（SignInコンポーネント）にニックネームに文字が入力されたらsetNameを利用して、nameの状態を変える。
+  //setNameが更新されると、８行目のnameが更新される。すると、９行目のconsole.logでnameの内容がブラウザに表示される。
   return <SignIn setName={setName} />;
 };
