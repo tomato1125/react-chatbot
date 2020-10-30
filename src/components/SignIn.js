@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -42,8 +42,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn({setName}) {
+export default function SignIn({ setName }) {
   const classes = useStyles();
+  //初期状態で「はじめる」のボタンが押せないようにする。disabledな状態に対してtrueを設定。disabledを変えるための関数をsetDisabledと設定する。
+  const [disabled, setDisabled] = useState(true);
+  //ニックネームの文字列の状態をコンポーネントで管理して、その文字列があれば（空じゃなければ）有効、無ければ無効にする。
+  const [string, setString] = useState('');
+  console.log({disabled, string});
+
+  useEffect(() => {
+    //stringが空かどうか？をdisabledという変数に代入
+    const disabled = string === ''
+    //54行目のdisabledを引数として渡す。
+    setDisabled(disabled)
+  }, [string]);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -62,6 +74,9 @@ export default function SignIn({setName}) {
             label="ニックネーム"
             name="name"
             autoFocus
+            //TextField内に文字が入力されたら発火するイベントを記述
+            //イベントが引数として渡って（e)、そのイベントに対してe.target.value(このフィールドの中の文字列)を取得することができる。
+            onChange={(e) => setString(e.target.value)}
           />
           <Button
             type="submit"
@@ -69,6 +84,8 @@ export default function SignIn({setName}) {
             variant="contained"
             color="primary"
             className={classes.submit}
+            //disabledという状態をボタンコンポーネントに付与する。
+            disabled={disabled}
           >
             はじめる
           </Button>
