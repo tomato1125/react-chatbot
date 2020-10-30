@@ -1,4 +1,4 @@
-module.exports = {
+const firebaseConfig = {
   apiKey: "AIzaSyAVv-8TSjgDbnq3C1Oso6mOWjFB0eF8-cw",
   authDomain: "react-chatbot-2e80c.firebaseapp.com",
   databaseURL: "https://react-chatbot-2e80c.firebaseio.com",
