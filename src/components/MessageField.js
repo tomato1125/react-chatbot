@@ -4,12 +4,15 @@ import { TextField } from '@material-ui/core';
 
 import { pushMessage } from '../firebase';
 
-// MessageFieldにはname,setText,textが渡ってくる。
-const MessageField = ({ name, setText, text }) => {
+// MessageFieldにはname,setText,textが渡ってくる。inputElも渡す
+const MessageField = ({ inputEl, name, setText, text }) => {
   const [isComposed, setIsComposed] = useState(false);
   return (
     <TextField 
+      autoFocus
       fullWidth={true} 
+      //material-uiのtext-field APIのドキュメントを確認し、refを渡す場合はinputRefを使う必要があることがわかるので、次のように記載する。
+      inputRef={inputEl}
       // 状態を管理する記述。
       onChange={(e) => setText(e.target.value)}
       onKeyDown={(e) => {

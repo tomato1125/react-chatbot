@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Avatar,Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -15,6 +15,8 @@ const useStyles = makeStyles({
 });
 
 const MessageInputField = ({ name }) => {
+  // inputField全体にrefを定義する※公式doc参照
+  const inputEl = useRef(null);
   // text欄に入力したものをfirebaseに飛ばす際に、①ENTERキー押 or ②送信ボタンの２種類があるので、この２つが共通するコンポーネントの配下で状態管理する処理
   const [text, setText] = useState('');
   const classes = useStyles();
@@ -27,11 +29,22 @@ const MessageInputField = ({ name }) => {
           <Avatar src={avatarPath} />
         </Grid>
         <Grid item xs={10}>
-          <MessageField name={name} setText={setText} text={text} />
+          <MessageField
+            // 
+            inputEl={inputEl} 
+            name={name} 
+            setText={setText} 
+            text={text} 
+          />
         </Grid>
         <Grid item xs={1}>
           
-          <MessageSubmitButton name={name} setText={setText} text={text} />
+          <MessageSubmitButton
+            inputEl={inputEl}
+            name={name}
+            setText={setText} 
+            text={text} 
+          />
         </Grid>
       </Grid>
     </div>
