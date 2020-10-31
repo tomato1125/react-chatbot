@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 // material-uiのTextFieldコンポーネントを使用するための記述。
 import { TextField } from '@material-ui/core';
 
+import { pushMessage } from '../firebase';
+
 // MessageFieldにはname,setText,textが渡ってくる。
 const MessageField = ({ name, setText, text }) => {
   const [isComposed, setIsComposed] = useState(false);
-  console.log({ text });
   return (
     <TextField 
       fullWidth={true} 
@@ -20,7 +21,8 @@ const MessageField = ({ name, setText, text }) => {
         if (text === '') return;
         //oreventDefaultで画面全体がリロードしなくなる。
         if( e.key === 'Enter') {
-          console.log('push message to firebase');
+          // firebase登録のためnameとtextを渡す処理。
+          pushMessage({ name: 'はむさん', text });
           // textを送信後、text欄を空にする処理
           setText('');
           e.preventDefault();
