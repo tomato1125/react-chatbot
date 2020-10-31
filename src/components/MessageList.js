@@ -50,12 +50,27 @@ const MessageList = () => {
     });
   }, []);
 
+  // messagesという配列に対して、何個の要素があるのかを数えて、lengthに代入。
+  const length = messages.length;
+
   return ( 
     // messageをループさせて、messageを個々で出力させる処理。
+    //mapに渡している関数の第二引数にはindexを付与することができるので、indexを記述。
     <List className={classes.root}>
-      {messages.map(({ key, name, text }) => {
+      {messages.map(({ key, name, text }, index) => {
+        //以下の記述については、例えば、10個の要素があった時に、lengthは「10」になる。一方で最後のデータのindexは「9」になる（０からカウントするため）。従って、indexが9になった時だけ、length === index + 1の結果がtrueになる。改行→
+        //indexが０〜８までであれば、以下の記述が成立しない(false)。
+        const isLastItem = length === index + 1;
         //メッセージごとに個々のユニークなkeyをつけないとエラーが出るので、keyを指定する。加えて、MessageItemコンポーネントにnameとTextを渡す必要があるので、それらも追記する。
-        return <MessageItem key={key} name={name} text={text} >item</MessageItem>;
+        return (
+          <MessageItem 
+            key={key} 
+            name={name} 
+            text={text}
+            //ここにisLastItemを渡す。
+            isLastItem={isLastItem} 
+          />
+        );
       })}
     </List>
   );

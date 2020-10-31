@@ -12,7 +12,7 @@ const MessageSubmitButton = ({ inputEl, name, setText, text }) => {
       disabled={text === ''} 
       onClick={() => {
       // firebaseへの登録はpushMessage関数で行うことができるので、name, textを渡す。
-      pushMessage({ name: 'はむさん', text });
+      pushMessage({ name, text });
       // textの初期化（空文字を渡す）処理。
       setText('');
       // 以下を実行することでfirebase登録後、自動でinput欄にフォーカスが当たるようになる。

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { 
   Avatar, 
   ListItem,
@@ -10,19 +10,29 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { gravatarPath } from '../gravatar';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   inline: {
     display: 'inline',
   },
 }));
 
-const MessageItem = ({ name, text }) => {
+const MessageItem = ({ isLastItem, name, text }) => {
+  const ref = useRef(null);
   const classes = useStyles();
   // gravatarPathにnameを渡して、avatarPath(これはURLに当たる)を生成する。
   const avatarPath = gravatarPath(name);
 
+  useEffect(() => {
+    // isLastItemの条件分岐
+    if (isLastItem) {
+      //isLastItemがtrueだったらここでscrollする
+      //behavior: "smooth"という記述はスクロールの動きを滑らかにするもの。
+      ref.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [isLastItem]);
+
   return (
-    <ListItem divider={true}>
+    <ListItem divider={true} ref={ref}>
       <ListItemAvatar>
         <Avatar src={avatarPath} />
       </ListItemAvatar>
