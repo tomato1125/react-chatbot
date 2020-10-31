@@ -25,7 +25,7 @@ const MessageField = ({ inputEl, name, setText, text }) => {
         //oreventDefaultで画面全体がリロードしなくなる。
         if( e.key === 'Enter') {
           // firebase登録のためnameとtextを渡す処理。
-          pushMessage({ name: 'はむさん', text });
+          pushMessage({ name, text });
           // textを送信後、text欄を空にする処理
           setText('');
           e.preventDefault();
