@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { List } from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 
+import MessageItem from './MessageItem';
 import { messagesRef } from '../firebase';
 
 const useStyles = makeStyles({
   root: {
     gridRow: 1,
+    overflow: 'auto',
+    width: '100%',
   },
 });
 
@@ -23,7 +27,7 @@ const MessageList = () => {
     // orderByKey()と記述することで時系列に表示できるように設定。公式docデータのクエリを参照。
     .orderByKey()
     // LimitToLast()と記述することで、直近のデータの取得数を指定できる。今回は直近の３件を取得する設定をしている。
-    .limitToLast(3)
+    .limitToLast(15)
     .on('value', (snapshot) => {
     // messagesという変数にsnapshot.val();というオブジェクトを代入する。
     const messages = snapshot.val();
@@ -46,7 +50,15 @@ const MessageList = () => {
     });
   }, []);
 
-  return <div className={classes.root}>MessageList</div>;
+  return ( 
+    // messageをループさせて、messageを個々で出力させる処理。
+    <List className={classes.root}>
+      {messages.map(({ key, name, text }) => {
+        //メッセージごとに個々のユニークなkeyをつけないとエラーが出るので、keyを指定する。加えて、MessageItemコンポーネントにnameとTextを渡す必要があるので、それらも追記する。
+        return <MessageItem key={key} name={name} text={text} >item</MessageItem>;
+      })}
+    </List>
+  );
 };
 
 export default MessageList;
