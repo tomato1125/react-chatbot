@@ -1,70 +1,27 @@
-# Getting Started with Create React App
+# アプリ名
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## reactChatBot
 
-## Available Scripts
+# アプリについて
 
-In the project directory, you can run:
+教材を基に React + firebase(Realtime Database)を使って、ログイン機能付きの簡単なチャットアプリを作成しました。
 
-### `yarn start`
+# 本番環境
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## URL: https://react-chatbot-2e80c.web.app/
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- ログイン名を入力いただくと、チャットに参加できます。
 
-### `yarn test`
+## 主な機能
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Material-UI を使用して、ビューを整えております。
+- ログイン画面はログイン名を入力するまではチャット画面に遷移できないような仕様になってます。
+  ![reactChat1](https://user-images.githubusercontent.com/66346042/98224042-52d24700-1f96-11eb-9cad-61f56adde527.gif)
 
-### `yarn build`
+- アイコンは gravatar を使って、自動的にアバターを割り振ることができます。
+- チャット画面では文章を入力するまでは送信ができないような仕様になっております。
+- メッセージを送信すると、そのメッセージに自動スクロールします。
+  ![reactChat2](https://user-images.githubusercontent.com/66346042/98224109-6b426180-1f96-11eb-9e41-0ff348f1ae5d.gif)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- firebase の Realtime database を使って、メッセージの即時保存ができます。
+  ![reactChat3](https://user-images.githubusercontent.com/66346042/98224166-7f865e80-1f96-11eb-886e-38d0d0de58a4.gif)
